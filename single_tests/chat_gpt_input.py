@@ -1,5 +1,6 @@
 import openai
-openai.api_key='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'
+import os
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 while True:
     text = input('ask chatgpt ')

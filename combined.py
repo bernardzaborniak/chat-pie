@@ -3,7 +3,7 @@ import os
 import speech_recognition as sr
 # -- chat gpt
 import openai
-openai.api_key='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'
+openai.api_key = os.environ["OPENAI_API_KEY"]
 # -- text to speech
 from gtts import gTTS
 
