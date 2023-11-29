@@ -1,4 +1,6 @@
 import os
+import threading 
+import time
 # -- speech recognition 
 import speech_recognition as sr
 # -- chat gpt
@@ -7,6 +9,10 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 # -- text to speech
 from gtts import gTTS
 
+waiting_for_chat_gpt = False
+chat_gpt_response = ''
+
+
 def play_text(text):
     print("answer: " + text)
     tts = gTTS(text, lang='en')
@@ -14,12 +20,21 @@ def play_text(text):
     os.system("vlc response.mp3 --play-and-exit")
 
 
+def get_chat_gpt_response_threaded():
+    response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": f"{input_text}"}])
+    global chat_gpt_response
+    chat_gpt_response = response.choices[0].message.content
+    global waiting_for_chat_gpt
+    waiting_for_chat_gpt = False
+    print("chat gpt finished: " + chat_gpt_response)
+
+
 while(True):
     # obtain audio from the microphone
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
-        play_text('Say something!')
+        threading.Thread(target=play_text('Say something!')).start()
         audio = r.listen(source)
         print('listening finished')
 
@@ -29,21 +44,21 @@ while(True):
         # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
         # instead of `r.recognize_google(audio)`
         input_text = r.recognize_google(audio)
-        print("Google Speech Recognition thinks you said: " + input_text)
 
-          # ask chat gpt for answer
-        response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": f"{input_text}"}])
-        response_text = response.choices[0].message.content
+        waiting_for_chat_gpt = True
+        threading.Thread(target=get_chat_gpt_response_threaded).start()       
+        play_text("I understood: " + input_text)
 
-        # convert answer to speech
-        play_text(response_text)
-  
+        print("chat gpt time")
+        print(waiting_for_chat_gpt)
+        while waiting_for_chat_gpt:
+            time.sleep(1)
+            play_text("waiting for chat gpt... this can take some time...")
+
+        play_text(chat_gpt_response)
+
 
     except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio")
+        threading.Thread(target=play_text("Sorry, I could not understand")).start()
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
-
-
-
-  
