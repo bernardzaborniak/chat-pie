@@ -4,8 +4,10 @@ import time
 # -- speech recognition 
 import speech_recognition as sr
 # -- chat gpt
-import openai
-openai.api_key = os.environ["OPENAI_API_KEY"]
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
 # -- text to speech
 from gtts import gTTS
 
@@ -13,15 +15,16 @@ waiting_for_chat_gpt = False
 chat_gpt_response = ''
 
 
-def play_text(text):
+def play_text(text, use_audio=True):
     print("answer: " + text)
-    tts = gTTS(text, lang='en')
-    tts.save('response.mp3')
-    os.system("vlc response.mp3 --play-and-exit")
+    if use_audio:
+        tts = gTTS(text, lang='en')
+        tts.save('response.mp3')
+        os.system("vlc response.mp3 --play-and-exit")
 
 
 def get_chat_gpt_response_threaded():
-    response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": f"{input_text}"}])
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": f"{input_text}"}])
     global chat_gpt_response
     chat_gpt_response = response.choices[0].message.content
     global waiting_for_chat_gpt
@@ -29,13 +32,15 @@ def get_chat_gpt_response_threaded():
     print("chat gpt finished: " + chat_gpt_response)
 
 
+use_audio = True
 while(True):
     # obtain audio from the microphone
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
-        threading.Thread(target=play_text('Say something!')).start()
+        threading.Thread(target=play_text('Say something!', use_audio=use_audio)).start()
         audio = r.listen(source)
+        print(audio)
         print('listening finished')
 
     #convert audio to text
@@ -59,6 +64,6 @@ while(True):
 
 
     except sr.UnknownValueError:
-        threading.Thread(target=play_text("Sorry, I could not understand")).start()
+        threading.Thread(target=play_text("Sorry, I could not understand", use_audio=True)).start()
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
