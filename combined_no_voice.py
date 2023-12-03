@@ -24,7 +24,7 @@ def play_text(text, use_audio=True):
         os.system("vlc response.mp3 --play-and-exit")
 
 
-def get_chat_gpt_response_threaded():
+def get_chat_gpt_response_threaded(input_text):
     global chat_history
     chat_history.append({"role": "user", "content": input_text})
     response = client.chat.completions.create(
@@ -45,8 +45,7 @@ while(True):
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
         threading.Thread(target=play_text('Say something!', use_audio=use_audio)).start()
-        audio = r.listen(source)
-        print(audio)
+        chatgpt_input = input('ask chatgpt: ')
         print('listening finished')
 
     #convert audio to text
@@ -54,11 +53,10 @@ while(True):
         # for testing purposes, we're just using the default API key
         # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
         # instead of `r.recognize_google(audio)`
-        input_text = r.recognize_google(audio)
 
         waiting_for_chat_gpt = True
-        threading.Thread(target=get_chat_gpt_response_threaded).start()       
-        play_text("I understood: " + input_text)
+        threading.Thread(target=get_chat_gpt_response_threaded, kwargs={"input_text": chatgpt_input}).start()       
+        play_text("I understood: " + chatgpt_input)
 
         print("chat gpt time")
         print(waiting_for_chat_gpt)
