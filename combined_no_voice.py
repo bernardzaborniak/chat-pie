@@ -37,17 +37,41 @@ def get_chat_gpt_response_threaded(input_text):
     waiting_for_chat_gpt = False
     print("chat gpt finished: " + chat_gpt_response)
 
-
-use_audio = True
-while(True):
+def say_greeting():
     # obtain audio from the microphone
     r = sr.Recognizer()
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
-        threading.Thread(target=play_text('Say something!', use_audio=use_audio)).start()
-        chatgpt_input = input('ask chatgpt: ')
-        print('listening finished')
+        threading.Thread(target=play_text('Hello! How can I assist you today?', use_audio=use_audio)).start()
 
+def read_input():
+    chatgpt_input = input('ask chatgpt: ')
+    print('listening finished')
+
+    return chatgpt_input
+
+use_audio = True
+
+r = sr.Recognizer()
+while(True):
+    with sr.Microphone() as source:
+        print("Listening for wake-up word...")
+        audio = r.listen(source)  # Adjust timeout as needed
+    try:
+        wake_up_word = r.recognize_google(audio).lower()
+        if "hey" in wake_up_word:
+            say_greeting()
+            break
+        else:
+            print("Did not recognize wake-up word.")
+    except sr.UnknownValueError:
+        print("Could not understand the wake-up word.")
+    except sr.RequestError as e:
+        print("Could not request results from Google Speech Recognition service; {0}".format(e))
+
+
+while(True):
+    chatgpt_input = read_input()
     #convert audio to text
     try:
         # for testing purposes, we're just using the default API key
