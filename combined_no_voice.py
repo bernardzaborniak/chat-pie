@@ -5,6 +5,7 @@ import time
 import speech_recognition as sr
 # -- chat gpt
 from openai import OpenAI
+import openai
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
@@ -56,9 +57,11 @@ r = sr.Recognizer()
 while(True):
     with sr.Microphone() as source:
         print("Listening for wake-up word...")
-        audio = r.listen(source)  # Adjust timeout as needed
+        #audio = r.listen(source)  # Adjust timeout as needed
+        #audio = 
     try:
-        wake_up_word = r.recognize_google(audio).lower()
+        wake_up_word = input("wake up word here please: ")
+        #wake_up_word = r.recognize_google(audio).lower()
         if "hey" in wake_up_word:
             say_greeting()
             break
