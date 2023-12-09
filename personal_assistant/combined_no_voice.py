@@ -5,7 +5,7 @@ import time
 import speech_recognition as sr
 # -- chat gpt
 from openai import OpenAI
-import openai
+
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
