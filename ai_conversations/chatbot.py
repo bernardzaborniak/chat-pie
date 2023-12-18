@@ -5,10 +5,9 @@ import time
 import speech_recognition as sr
 from openai import OpenAI
 from gtts import gTTS
-import ai_conversations.dynamic_recorder as dynamic_recorder
+import dynamic_recorder as dynamic_recorder
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-noise_threshold = 800
 
 #accent could be
     #'com.au'
@@ -43,7 +42,8 @@ class Chatbot:
     def get_chat_gpt_response_threaded(self, input_text):
         self.chat_history.append({"role": "user", "content": input_text})
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo", messages=self.chat_history
+            #model="gpt-3.5-turbo", messages=self.chat_history
+            model="gpt-4", messages=self.chat_history
         )
         self.chat_gpt_response = response.choices[0].message.content
         self.waiting_for_chat_gpt = False
@@ -76,7 +76,7 @@ class Chatbot:
 
             output_file = "recorded_audio.wav"
             volume_threshold = 2500 #if the volume gets over this value, we start recording
-            silence_duration = 3 #if we stopped talking for this amount of seconds we stope recording
+            silence_duration = 1.5 #if we stopped talking for this amount of seconds we stope recording
             dynamic_recorder.record_audio(output_file, volume_threshold=volume_threshold, silence_duration = silence_duration)          
 
             with sr.AudioFile(AUDIO_FILE) as source:

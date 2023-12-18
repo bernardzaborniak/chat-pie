@@ -32,32 +32,27 @@ def record_audio(file_name, volume_threshold=1500, silence_duration = 5, sample_
         data = stream.read(frames_per_buffer)
 
         rms = audioop.rms(data, 2)    # here's where you calculate the volume
-        print(f"Volume: {rms:.2f}")
-        if(rms > volume_threshold*3):
-            starded_recording_after_reaching_threshold = True
+
+        if(not starded_recording_after_reaching_threshold):
+            print(f"Volume: {rms:.2f}", end='\r')
+
+            if(rms > volume_threshold*3):
+                starded_recording_after_reaching_threshold = True
 
         if(starded_recording_after_reaching_threshold):
             frames.append(data)
 
-            # Convert the byte data to NumPy array
-            #audio_data = np.frombuffer(data, dtype=np.int16)
-
-            rms = audioop.rms(data, 2)    # here's where you calculate the volume
-            print(f"Volume: {rms:.2f}")
-
             if(rms > volume_threshold):
                 silence_started_time = datetime.now()
                 current_silence_time = 0
-            else: 
-                current_silence_time = (datetime.now()-silence_started_time).seconds
-                print(f"current_silence_time: {current_silence_time}")
+                print(f"Volume: {rms:.2f}", end='\r')
 
+            else: 
+                current_silence_time = (datetime.now()-silence_started_time).total_seconds()
+                print(f"Volume: {rms:.2f}",f"current_silence_time: {current_silence_time}", end='\r')
 
             if(current_silence_time > silence_duration):
                 silence_passed = True
-
-        # Display the volume level
-        #print(f"Volume: {rms:.2f}", end='\r')
 
     print("Recording finished.")
 
@@ -74,7 +69,6 @@ def record_audio(file_name, volume_threshold=1500, silence_duration = 5, sample_
         wf.writeframes(b''.join(frames))
 
     
-
     print(f"Audio saved to {file_name}")
 
     return 
