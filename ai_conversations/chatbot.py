@@ -5,8 +5,10 @@ import time
 import speech_recognition as sr
 from openai import OpenAI
 from gtts import gTTS
+import ai_conversations.dynamic_recorder as dynamic_recorder
 
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+noise_threshold = 800
 
 #accent could be
     #'com.au'
@@ -66,28 +68,33 @@ class Chatbot:
 
         r = sr.Recognizer()
 
-        while True:
-            # obtain audio from the microphone
-            #r = sr.Recognizer()
+        from os import path
+        AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "recorded_audio.wav")
 
-            with sr.Microphone() as source:
-                print("listening startet")
-                r.adjust_for_ambient_noise(source)
-                counter = datetime.now()
-                audio = r.listen(source)
-                print(f"listening finished, listened for {datetime.now()-counter} seconds")
+        while True:
+            print("listening startet")
+
+            output_file = "recorded_audio.wav"
+            volume_threshold = 2500 #if the volume gets over this value, we start recording
+            silence_duration = 3 #if we stopped talking for this amount of seconds we stope recording
+            dynamic_recorder.record_audio(output_file, volume_threshold=volume_threshold, silence_duration = silence_duration)          
+
+            with sr.AudioFile(AUDIO_FILE) as source:
+                audio = r.record(source)  # read the entire audio file
 
             # convert audio to text
             try:
                 input_text = r.recognize_whisper(audio, language = 'en')
+                #input_text = r.recognize_google(audio, language = 'en')
                 print("recognized audio: " + input_text)
 
-                if input_text == '':
+                if input_text == '' or input_text == "Thank you.":
                     continue
 
             except sr.UnknownValueError:
-                #threading.Thread(   target=self.play_text("Sorry, I could not understand")).start()
                 print("listening not understood")
+                self.play_text('I could not understand could you repeat that?')
+
                 continue
             except sr.RequestError as e:
                 print(  "Could not request results from Google Speech Recognition service; {0}".format( e ))

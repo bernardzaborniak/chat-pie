@@ -1,0 +1,21 @@
+Measuring...
+average volume: 1560.3410852713178
+median volume: 1238.0
+minimum volume: 230
+PS C:\Projects\chat-pie> & c:/Projects/chat-pie/myenv/Scripts/python.exe c:/Projects/chat-pie/ai_conversations/threshold_measurer.py
+Measuring...
+average volume: 1427.937984496124
+median volume: 788.5
+minimum volume: 202
+PS C:\Projects\chat-pie> & c:/Projects/chat-pie/myenv/Scripts/python.exe c:/Projects/chat-pie/ai_conversations/threshold_measurer.py
+Measuring...
+average volume: 677.6434108527131
+median volume: 495.5
+maximum volume: 3321
+minimum volume: 138
+PS C:\Projects\chat-pie> & c:/Projects/chat-pie/myenv/Scripts/python.exe c:/Projects/chat-pie/ai_conversations/threshold_measurer.py
+Measuring...
+average volume: 1959.4496124031007
+median volume: 1673.5
+maximum volume: 11074
+minimum volume: 387
