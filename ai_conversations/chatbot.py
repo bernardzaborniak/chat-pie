@@ -43,8 +43,8 @@ class Chatbot:
     def get_chat_gpt_response_threaded(self, input_text):
         self.chat_history.append({"role": "user", "content": input_text})
         response = client.chat.completions.create(
-            #model="gpt-3.5-turbo", messages=self.chat_history
-            model="gpt-4", messages=self.chat_history
+            model="gpt-3.5-turbo", messages=self.chat_history
+            #model="gpt-4", messages=self.chat_history
         )
         self.chat_gpt_response = response.choices[0].message.content
         self.chat_history.append({"role": "assistant", "content": self.chat_gpt_response})
@@ -77,7 +77,7 @@ class Chatbot:
             print("listening startet")
 
             output_file = "recorded_audio.wav"
-            volume_threshold = 1000 #if the volume gets over this value, we start recording
+            volume_threshold = 700 #if the volume gets over this value, we start recording
             silence_duration = 1.5 #if we stopped talking for this amount of seconds we stope recording
             dynamic_recorder.record_audio(output_file, volume_threshold=volume_threshold, silence_duration = silence_duration)          
 

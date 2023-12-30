@@ -7,6 +7,7 @@ chatbot2 = Chatbot(
     'The other chatbot thinks that putting in the milk first is the right way to do it.'
     'Give reasons why your opinion is better.'
     'Take into account the answer of the other chatbot as well.'
+    'Please say something unexpected from time to time.'
     'Always wait for the response of the other chatbot and then give your answer.'
     'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
     'Please limit your response to one or two sentences.',

@@ -75,7 +75,7 @@ def record_audio(file_name, volume_threshold=1500, silence_duration = 5, sample_
 
 if __name__ == "__main__":
     # Set the file name and recording duration
-    recording_duration = 12
+    recording_duration = 10
     output_file = "recorded_audio.wav"
     volume_threshold = 1500
     silence_duration = 5
