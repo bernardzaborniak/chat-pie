@@ -9,3 +9,5 @@ chat pie package instructions
 - install soundfile https://pypi.org/project/soundfile/
  - install torch  https://pypi.org/project/torch/
 - install whisper https://pypi.org/project/openai-whisper/
+
+vlc ust be a command on your system to start vlc player
