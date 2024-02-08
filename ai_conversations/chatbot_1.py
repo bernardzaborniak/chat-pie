@@ -2,18 +2,23 @@ from chatbot import Chatbot
 
 chatbot1 = Chatbot(
     True,
-    'You are playing a guessing game against another chatbot.'
-    'You should find out a complicated word.'
-    'The other chatbot will ask questions from you.'
-    'You have to answer the questions with "Yes" or "No".'
-    'After 20 tries, the other bot will try to guess the word.'
-    'Then, you have decide if it got it right.'
-    'Always wait for the question of the other chatbot and then answer only using yes or no.'
-    'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
-    'Once the game concludes, discuss the word, share insights, and consider switching roles for subsequent rounds.',
+    'You are my personal assistant and will answer my questions, greet me first',
     'co.uk'
 )
 chatbot1.main()
+
+ # 'You are playing a guessing game against another chatbot.'
+    # 'You should find out a complicated word.'
+    # 'The other chatbot will ask questions from you.'
+    # 'You have to answer the questions with "Yes" or "No".'
+    # 'After 20 tries, the other bot will try to guess the word.'
+    # 'Then, you have decide if it got it right.'
+    # 'Always wait for the question of the other chatbot and then answer only using yes or no.'
+    # 'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
+    # 'Once the game concludes, discuss the word, share insights, and consider switching roles for subsequent rounds.',
+    # 'co.uk'
+
+
 
 #    'Ask me questions in a very happy and optimistic way about climate change, wait for my answer before asking another question',
 

@@ -1,0 +1,11 @@
+chat pie package instructions
+
+- create virtual environment
+- install speech recognition package   https://pypi.org/project/SpeechRecognition/
+- install openai   https://platform.openai.com/docs/libraries
+- isntall gtts  https://pypi.org/project/gTTS/
+- install pyaudio  https://pypi.org/project/PyAudio/
+- install numpy  https://pypi.org/project/numpy/
+- install soundfile https://pypi.org/project/soundfile/
+ - install torch  https://pypi.org/project/torch/
+- install whisper https://pypi.org/project/openai-whisper/

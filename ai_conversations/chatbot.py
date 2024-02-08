@@ -76,7 +76,7 @@ class Chatbot:
         while True:
             print("listening startet")
 
-            output_file = "recorded_audio.wav"
+            output_file = "ai_conversations/recorded_audio.wav"
             volume_threshold = 700 #if the volume gets over this value, we start recording
             silence_duration = 1.5 #if we stopped talking for this amount of seconds we stope recording
             dynamic_recorder.record_audio(output_file, volume_threshold=volume_threshold, silence_duration = silence_duration)          
