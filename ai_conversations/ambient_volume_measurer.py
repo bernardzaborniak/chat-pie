@@ -10,6 +10,7 @@ import statistics
 
 duration = 6
 
+file_name = "ambient_volume_measurer_recording.wav"
 
 p = pyaudio.PyAudio()
 
@@ -28,17 +29,41 @@ stream = p.open(format=format,
 
 print("Measuring...")
 
+#ignore the first 0.5 seconds
 
 volumes = []
+frames = []
 for i in range(0, int(sample_rate / frames_per_buffer * duration)):
     data = stream.read(frames_per_buffer)
-    rms = audioop.rms(data, 2)    # here's where you calculate the volume
-    volumes.append(rms)
-    print(f"Number: {i*sample_rate}", end='\r')
+    frames.append(data)
 
-    #print(f"Volume: {rms:.2f}")
+    # some laptops have a piep at the beginning of every recording,thats a little too loud 
+    # theats why we start recording a little later
+    #if(i*(sample_rate / frames_per_buffer)>1000): 
+    if(len(frames)>30): 
+        rms = audioop.rms(data, 2)    # here's where you calculate the volume
+        print(f"Volume: {rms:.2f}")
+        volumes.append(rms)
+
+    #print(f"Number: {i*(sample_rate / frames_per_buffer)}", end='\r')
+
 
 print(f"average volume: {sum(volumes) / len(volumes)}")
 print(f"median volume: {statistics.median(volumes)}")
 print(f"maximum volume: {max(volumes)}")
 print(f"minimum volume: {min(volumes)}")
+
+# Stop and close the audio stream
+stream.stop_stream()
+stream.close()
+p.terminate()
+
+    # Save the recorded audio to a WAV file
+with wave.open(file_name, 'wb') as wf:
+    wf.setnchannels(channels)
+    wf.setsampwidth(p.get_sample_size(format))
+    wf.setframerate(sample_rate)
+    wf.writeframes(b''.join(frames))
+
+    
+print(f"Audio saved to {file_name}")

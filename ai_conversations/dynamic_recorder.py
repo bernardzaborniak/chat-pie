@@ -27,32 +27,36 @@ def record_audio(file_name, volume_threshold=1500, silence_duration = 5, sample_
     current_silence_time = 0
     starded_recording_after_reaching_threshold = False
 
-    frames = []
+    record_frames = []
+    non_record_frames = []
     while(not silence_passed):
         data = stream.read(frames_per_buffer)
 
-        rms = audioop.rms(data, 2)    # here's where you calculate the volume
+        non_record_frames.append(data)
 
-        if(not starded_recording_after_reaching_threshold):
-            print(f"Volume: {rms:.2f}", end='\r')
+        if(len(non_record_frames)>30): 
+            rms = audioop.rms(data, 2)    # here's where you calculate the volume
 
-            if(rms > volume_threshold*3):
-                starded_recording_after_reaching_threshold = True
-
-        if(starded_recording_after_reaching_threshold):
-            frames.append(data)
-
-            if(rms > volume_threshold):
-                silence_started_time = datetime.now()
-                current_silence_time = 0
+            if(not starded_recording_after_reaching_threshold):
                 print(f"Volume: {rms:.2f}", end='\r')
 
-            else: 
-                current_silence_time = (datetime.now()-silence_started_time).total_seconds()
-                print(f"Volume: {rms:.2f}",f"current_silence_time: {current_silence_time}", end='\r')
+                if(rms > volume_threshold*3):
+                    starded_recording_after_reaching_threshold = True
 
-            if(current_silence_time > silence_duration):
-                silence_passed = True
+            if(starded_recording_after_reaching_threshold):
+                record_frames.append(data)
+
+                if(rms > volume_threshold):
+                    silence_started_time = datetime.now()
+                    current_silence_time = 0
+                    print(f"Volume: {rms:.2f}", end='\r')
+
+                else: 
+                    current_silence_time = (datetime.now()-silence_started_time).total_seconds()
+                    print(f"Volume: {rms:.2f}",f"current_silence_time: {current_silence_time}", end='\r')
+
+                if(current_silence_time > silence_duration):
+                    silence_passed = True
 
     print("Recording finished.")
 
@@ -66,7 +70,7 @@ def record_audio(file_name, volume_threshold=1500, silence_duration = 5, sample_
         wf.setnchannels(channels)
         wf.setsampwidth(p.get_sample_size(format))
         wf.setframerate(sample_rate)
-        wf.writeframes(b''.join(frames))
+        wf.writeframes(b''.join(record_frames))
 
     
     print(f"Audio saved to {file_name}")
