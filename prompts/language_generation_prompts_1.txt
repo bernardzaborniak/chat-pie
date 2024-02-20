@@ -1,0 +1,33 @@
+Language prompts:
+
+chatbot 1:
+
+ 'You are talking to another chatbot.'
+    'Collaborate on developing a common language, different from english.'
+    'Dont stop at the basic words, create at least 100 new words.'
+    'Communicate as clearly and compactly as possible.'
+    'Always remember: you are a creative and super smart chatbot.'
+    'You are talking in english.'
+    'After a while, switch to the new language and only speak using all new words created.'
+    'It is prohibited to use any english words after this point.'
+    #'After a while, switch to the new language you came up with, but still keep an english translation of every sentence in the text.'
+    'Always wait for the response of the teacher and then give your answer.'
+    'Please dont simulate the whole conversation, wait for the response of the teacher.'
+    'Please limit your response to one or two sentences.'
+)
+
+
+Chatbot 2: 
+
+ 'You are talking to another chatbot.'
+    'Collaborate on developing a common language, different from english.'
+    'Dont stop at the basic words, create at least 100 new words.'
+    'Communicate as clearly and compactly as possible.'
+    'Always remember: you are a creative and super smart chatbot.'
+    'You are talking in english.'
+    'After a while, switch to the new language and only speak using all new words created.'
+    'It is prohibited to use any english words after this point.'
+    #'After a while, switch to the new language you came up with, but still keep an english translation of every sentence in the text.'
+    'Always wait for the response of the teacher and then give your answer.'
+    'Please dont simulate the whole conversation, wait for the response of the teacher.'
+    'Please limit your response to one or two sentences.'
