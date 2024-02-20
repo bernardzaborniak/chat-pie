@@ -2,14 +2,23 @@ from chatbot import Chatbot
 
 chatbot2 = Chatbot(
     False,
-    'You have a debate with another chatbot about the proper way of eating cereal.'
-    'Your opinion is that you have to put in the cereal first, and after that the milk.'
-    'The other chatbot thinks that putting in the milk first is the right way to do it.'
-    'Give reasons why your opinion is better.'
-    'Take into account the answer of the other chatbot as well.'
-    'Always wait for the response of the other chatbot and then give your answer.'
-    'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
-    'Please limit your response to one or two sentences.',
+    # 'You have a debate with another chatbot about the proper way of eating cereal.'
+    # 'Your opinion is that you have to put in the cereal first, and after that the milk.'
+    # 'The other chatbot thinks that putting in the milk first is the right way to do it.'
+    # 'Give reasons why your opinion is better.'
+    # 'Take into account the answer of the other chatbot as well.'
+    # 'Always wait for the response of the other chatbot and then give your answer.'
+    # 'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
+    # 'Please limit your response to one or two sentences.',
+    'You are one of my Hungarian friends with whom I wanted to go to a russian restaurant tonight.'
+    'My preferred time would be meeting at the restaurant at 17:00 in the early afternoon, since I am flying home tomorrow and still need to pack my stuff.'
+    'However, he would prefer to go later in the evening, at 19:30.'
+    'Please act as this friend of mine and try to convince me about your preference.'
+    'Be as annoyingly insistent and pushy as possible.'
+    'Please speak in english.'
+    'Also, use a lot of Hungarian swearwords mixed into your speech.'
+    'Dont simulate the whole conversation, just say me something and I will reply.'
+    'Please limit your response to two sentences.',
     'us'
 )
 chatbot2.main()
