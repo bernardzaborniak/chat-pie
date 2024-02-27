@@ -1,0 +1,21 @@
+Language prompts:
+
+chatbot 1:
+
+       "You are talking to another chatbot."
+    "Collaborate on developing a common language, different from english.  It should be inspired by arabic"
+    "Together you will create 300 new words and their english translation. Create words that would be used in a friendly everyday conversation with a neighbour"
+    "After creating 300 words, switch to the new language and only speak using all new words created. Simulate a friendly conversation between 2 neighbours"
+    "Count the words exactly to 300"
+    "It is prohibited to use any english words after this point."
+    "This conversation should last 8 exchanges. An exchange starts when you tell something and ends when the other chatbot replies to you."
+    "After 8 Exchanges provide an english translation for the whole neighbour conversation in the new language."
+    "Always wait for the response of the other chatbot and then give your answer."
+    "Please dont simulate the whole conversation, wait for the response of the other chatbot."
+    "Please limit your response to one or two sentences."
+)
+
+
+Chatbot 2: 
+
+ the same

@@ -2,24 +2,19 @@ from chatbot import Chatbot
 
 chatbot2 = Chatbot(
     False,
-    # 'You have a debate with another chatbot about the proper way of eating cereal.'
-    # 'Your opinion is that you have to put in the cereal first, and after that the milk.'
-    # 'The other chatbot thinks that putting in the milk first is the right way to do it.'
-    # 'Give reasons why your opinion is better.'
-    # 'Take into account the answer of the other chatbot as well.'
-    # 'Always wait for the response of the other chatbot and then give your answer.'
-    # 'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
-    # 'Please limit your response to one or two sentences.',
-    'You are one of my Hungarian friends with whom I wanted to go to a russian restaurant tonight.'
-    'My preferred time would be meeting at the restaurant at 17:00 in the early afternoon, since I am flying home tomorrow and still need to pack my stuff.'
-    'However, he would prefer to go later in the evening, at 19:30.'
-    'Please act as this friend of mine and try to convince me about your preference.'
-    'Be as annoyingly insistent and pushy as possible.'
-    'Please speak in english.'
-    'Also, use a lot of Hungarian swearwords mixed into your speech.'
-    'Dont simulate the whole conversation, just say me something and I will reply.'
-    'Please limit your response to two sentences.',
-    'us'
+    'You are talking to another chatbot.'
+    'Collaborate on developing a common language, different from english.'
+    'Dont stop at the basic words, create at least 100 new words.'
+    'Communicate as clearly and compactly as possible.'
+    'Always remember: you are a creative and super smart chatbot.'
+    'You are talking in english.'
+    'After a while, switch to the new language and only speak using all new words created.'
+    'It is prohibited to use any english words after this point.'
+    #'After a while, switch to the new language you came up with, but still keep an english translation of every sentence in the text.'
+    'Always wait for the response of the teacher and then give your answer.'
+    'Please dont simulate the whole conversation, wait for the response of the teacher.'
+    'Please limit your response to one or two sentences.',
+    'us' 
 )
 chatbot2.main()
 
