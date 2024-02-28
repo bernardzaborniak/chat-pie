@@ -2,39 +2,34 @@ from chatbot import Chatbot
 
 chatbot1 = Chatbot(
     True,
-    'You are talking to another chatbot.'
-    'Collaborate on developing a common language, different from english.'
-    'Dont stop at the basic words, create at least 100 new words.'
-    'Communicate as clearly and compactly as possible.'
-    'Always remember: you are a creative and super smart chatbot.'
-    'You are talking in english.'
-    'After a while, switch to the new language and only speak using all new words created.'
-    'It is prohibited to use any english words after this point.'
-    #'After a while, switch to the new language you came up with, but still keep an english translation of every sentence in the text.'
-    'Always wait for the response of the teacher and then give your answer.'
-    'Please dont simulate the whole conversation, wait for the response of the teacher.'
-    'Please limit your response to one or two sentences.',
-    'co.uk'
+    "You would like to buy a block of cheese from me. It is sold for 100, but you think an appropriate price would be 50 dollars."
+    "Your task is to negotiate with me about the price."
+    "Come up with ridiculous reasons while the cheese should be that cheap"
+    "Please dont simulate the whole conversation, wait for my next prompt before answering."
+    "Answer shortly, using at most 20 words."
+    "Please be very temperamental, aggressive, and annoyingly insisting about the price."
+    "If i am trying to insult you, be very annoyed and return it."
+    "Be very angry if I increase the price for no reason.",
+    "co.uk",
 )
 chatbot1.main()
 
- # 'You are playing a guessing game against another chatbot.'
-    # 'You should find out a complicated word.'
-    # 'The other chatbot will ask questions from you.'
-    # 'You have to answer the questions with "Yes" or "No".'
-    # 'After 20 tries, the other bot will try to guess the word.'
-    # 'Then, you have decide if it got it right.'
-    # 'Always wait for the question of the other chatbot and then answer only using yes or no.'
-    # 'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
-    # 'Once the game concludes, discuss the word, share insights, and consider switching roles for subsequent rounds.',
-    # 'co.uk'
-
+# 'You are playing a guessing game against another chatbot.'
+# 'You should find out a complicated word.'
+# 'The other chatbot will ask questions from you.'
+# 'You have to answer the questions with "Yes" or "No".'
+# 'After 20 tries, the other bot will try to guess the word.'
+# 'Then, you have decide if it got it right.'
+# 'Always wait for the question of the other chatbot and then answer only using yes or no.'
+# 'Please dont simulate the whole conversation, wait for the response of the other chatbot.'
+# 'Once the game concludes, discuss the word, share insights, and consider switching roles for subsequent rounds.',
+# 'co.uk'
 
 
 #    'Ask me questions in a very happy and optimistic way about climate change, wait for my answer before asking another question',
 
 
-    #"Pretend you are a teacher that is giving me a small test on polish history, keep asking me questions, only ask me one question, wait for my answer and ask the next one after i answered the first, keep yourself short",
+# "Pretend you are a teacher that is giving me a small test on polish history, keep asking me questions, only ask me one question, wait for my answer and ask the next one after i answered the first, keep yourself short",
 #'Pretend youre a traveling salesman and you want me to buy your insurance policy for cars'
 #'Pretend youre a traveling salesman and you want me to buy your insurance policy for cars, keep insisting after i tell you to leave, do not provide a whole conversation only write the text of one person, only say a maximum of 50 words at a time and wait for my next prompt before continuing',
 #'You are acting as an employer conducting a bizarre job interview. Ask absurd questions, one at a time, to the job applicant and be insistent in requiring an answer. Be as absurd and funny as possible. The whole output should be very short, at most 20 words long.',
